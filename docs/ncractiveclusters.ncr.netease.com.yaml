@@ -1,0 +1,213 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: ""
+  name: ncractiveclusters.ncr.netease.com
+spec:
+  conversion:
+    strategy: None
+  group: ncr.netease.com
+  names:
+    kind: NcrActiveCluster
+    listKind: NcrActiveClusterList
+    plural: ncractiveclusters
+    singular: ncractivecluster
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: Spec defines the behavior of a ncr cluster
+            properties:
+              act:
+                enum:
+                - cluster
+                - sentinel
+                - standalone
+                type: string
+              activeNodePhase:
+                type: string
+              autoRecover:
+                type: boolean
+              logicMaster:
+                type: boolean
+              mode:
+                enum:
+                - active
+                - hotBackup
+                - unit
+                type: string
+              name:
+                type: string
+              preCluster:
+                properties:
+                  clusterName:
+                    type: string
+                  k8SClusterId:
+                    type: string
+                  k8SClusterName:
+                    type: string
+                  namespace:
+                    type: string
+                  nodes:
+                    items:
+                      properties:
+                        ipAddr:
+                          type: string
+                      required:
+                      - ipAddr
+                      type: object
+                    type: array
+                  password:
+                    type: string
+                  sentinelMasterName:
+                    type: string
+                  sentinelPassword:
+                    type: string
+                required:
+                - clusterName
+                - namespace
+                - nodes
+                type: object
+                x-kubernetes-preserve-unknown-fields: true
+              recoverStrategy:
+                properties:
+                  failover:
+                    type: boolean
+                  sharedDown:
+                    type: boolean
+                type: object
+              selfCluster:
+                properties:
+                  clusterName:
+                    type: string
+                  k8SClusterId:
+                    type: string
+                  k8SClusterName:
+                    type: string
+                  namespace:
+                    type: string
+                  nodes:
+                    items:
+                      properties:
+                        ipAddr:
+                          type: string
+                      required:
+                      - ipAddr
+                      type: object
+                    type: array
+                  password:
+                    type: string
+                  sentinelMasterName:
+                    type: string
+                  sentinelPassword:
+                    type: string
+                required:
+                - clusterName
+                - namespace
+                - nodes
+                type: object
+                x-kubernetes-preserve-unknown-fields: true
+            type: object
+            x-kubernetes-preserve-unknown-fields: true
+          status:
+            description: Most recently observed status of the ncr cluster~
+            properties:
+              clusterPreNode:
+                items:
+                  properties:
+                    ipAddr:
+                      type: string
+                  required:
+                  - ipAddr
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
+                type: array
+              clusterSelfNode:
+                items:
+                  properties:
+                    ipAddr:
+                      type: string
+                  required:
+                  - ipAddr
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
+                type: array
+              currentClusterStatus:
+                properties:
+                  logicMaster:
+                    type: boolean
+                  sharedCnt:
+                    type: integer
+                type: object
+                x-kubernetes-preserve-unknown-fields: true
+              nodeRelations:
+                items:
+                  properties:
+                    currAddrIp:
+                      type: string
+                    lag:
+                      format: int64
+                      type: integer
+                    offset:
+                      format: int64
+                      type: integer
+                    preAddrIp:
+                      type: string
+                    relationStatus:
+                      type: string
+                    shared:
+                      type: string
+                  required:
+                  - currAddrIp
+                  - preAddrIp
+                  - relationStatus
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
+                type: array
+              relationStatus:
+                type: string
+              sentinelPreNode:
+                items:
+                  properties:
+                    ipAddr:
+                      type: string
+                  required:
+                  - ipAddr
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
+                type: array
+              sentinelSelfNode:
+                items:
+                  properties:
+                    ipAddr:
+                      type: string
+                  required:
+                  - ipAddr
+                  type: object
+                  x-kubernetes-preserve-unknown-fields: true
+                type: array
+            type: object
+            x-kubernetes-preserve-unknown-fields: true
+        required:
+        - metadata
+        - spec
+        type: object
+        x-kubernetes-preserve-unknown-fields: true
+    served: true
+    storage: true
