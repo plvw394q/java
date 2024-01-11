@@ -303,7 +303,7 @@ spec:
                           anyOf:
                           - type: integer
                           - type: string
-                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                          
                           x-kubernetes-int-or-string: true
                         description: 'Limits describes the maximum amount of compute
                           resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
@@ -313,7 +313,7 @@ spec:
                           anyOf:
                           - type: integer
                           - type: string
-                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                          
                           x-kubernetes-int-or-string: true
                         description: 'Requests describes the minimum amount of compute
                           resources required. If Requests is omitted for a container,
@@ -364,7 +364,7 @@ spec:
                 - proxyCount
                 - resourceReqs
                 type: object
-                x-kubernetes-preserve-unknown-fields: true
+                
               replicationFactor:
                 format: int32
                 maximum: 5
@@ -378,7 +378,7 @@ spec:
                       anyOf:
                       - type: integer
                       - type: string
-                      pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                      
                       x-kubernetes-int-or-string: true
                     description: 'Limits describes the maximum amount of compute resources
                       allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
@@ -388,7 +388,7 @@ spec:
                       anyOf:
                       - type: integer
                       - type: string
-                      pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                      
                       x-kubernetes-int-or-string: true
                     description: 'Requests describes the minimum amount of compute
                       resources required. If Requests is omitted for a container,
@@ -485,11 +485,11 @@ spec:
             - resourceReqs
             - version
             type: object
-            x-kubernetes-preserve-unknown-fields: true
+            
         required:
         - metadata
         - spec
         type: object
-        x-kubernetes-preserve-unknown-fields: true
+        
     served: true
     storage: true
