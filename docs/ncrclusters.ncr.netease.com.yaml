@@ -1,7 +1,11 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
+  creationTimestamp: "2023-11-14T04:37:46Z"
+  generation: 1
   name: ncrclusters.ncr.netease.com
+  resourceVersion: "97132350"
+  uid: a4c6d42e-d13c-483a-9bba-ed76b91627bf
 spec:
   conversion:
     strategy: None
@@ -303,7 +307,7 @@ spec:
                           anyOf:
                           - type: integer
                           - type: string
-                          
+                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                           x-kubernetes-int-or-string: true
                         description: 'Limits describes the maximum amount of compute
                           resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
@@ -313,7 +317,7 @@ spec:
                           anyOf:
                           - type: integer
                           - type: string
-                          
+                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                           x-kubernetes-int-or-string: true
                         description: 'Requests describes the minimum amount of compute
                           resources required. If Requests is omitted for a container,
@@ -364,7 +368,7 @@ spec:
                 - proxyCount
                 - resourceReqs
                 type: object
-                
+                x-kubernetes-preserve-unknown-fields: true
               replicationFactor:
                 format: int32
                 maximum: 5
@@ -378,7 +382,7 @@ spec:
                       anyOf:
                       - type: integer
                       - type: string
-                      
+                      pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                       x-kubernetes-int-or-string: true
                     description: 'Limits describes the maximum amount of compute resources
                       allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
@@ -388,7 +392,7 @@ spec:
                       anyOf:
                       - type: integer
                       - type: string
-                      
+                      pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                       x-kubernetes-int-or-string: true
                     description: 'Requests describes the minimum amount of compute
                       resources required. If Requests is omitted for a container,
@@ -485,11 +489,34 @@ spec:
             - resourceReqs
             - version
             type: object
-            
+            x-kubernetes-preserve-unknown-fields: true
         required:
         - metadata
         - spec
         type: object
-        
+        x-kubernetes-preserve-unknown-fields: true
     served: true
     storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: NcrCluster
+    listKind: NcrClusterList
+    plural: ncrclusters
+    shortNames:
+    - ncr
+    singular: ncrcluster
+  conditions:
+  - lastTransitionTime: "2023-11-14T04:37:46Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2023-11-14T04:37:51Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1alpha1
