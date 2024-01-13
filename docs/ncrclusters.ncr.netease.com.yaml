@@ -307,8 +307,8 @@ spec:
                           anyOf:
                           - type: integer
                           - type: string
-                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
-                          x-kubernetes-int-or-string: true
+                          
+                          
                         description: 'Limits describes the maximum amount of compute
                           resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                         type: object
@@ -317,8 +317,8 @@ spec:
                           anyOf:
                           - type: integer
                           - type: string
-                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
-                          x-kubernetes-int-or-string: true
+                          
+                          
                         description: 'Requests describes the minimum amount of compute
                           resources required. If Requests is omitted for a container,
                           it defaults to Limits if that is explicitly specified, otherwise
@@ -360,7 +360,7 @@ spec:
                     maximum: 65535
                     type: integer
                   timeout:
-                    pattern: ^([1-9][0-9]*s)$|^[1-9]\d*\.\d+s|0\.\d*[1-9]\d*s$
+                    
                     type: string
                   version:
                     type: string
@@ -382,8 +382,8 @@ spec:
                       anyOf:
                       - type: integer
                       - type: string
-                      pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
-                      x-kubernetes-int-or-string: true
+                      
+                      
                     description: 'Limits describes the maximum amount of compute resources
                       allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/'
                     type: object
@@ -392,8 +392,8 @@ spec:
                       anyOf:
                       - type: integer
                       - type: string
-                      pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
-                      x-kubernetes-int-or-string: true
+                      
+                      
                     description: 'Requests describes the minimum amount of compute
                       resources required. If Requests is omitted for a container,
                       it defaults to Limits if that is explicitly specified, otherwise
@@ -499,7 +499,7 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
+status: 
   acceptedNames:
     kind: NcrCluster
     listKind: NcrClusterList
